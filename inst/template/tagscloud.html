@@ -1,0 +1,107 @@
+<html>
+    <!-- A straightforward adaptation of the word-cumulus-goog-vis tag cloud from 
+         http://code.google.com/p/word-cumulus-goog-vis/wiki/UserGuide 
+
+         This file is used as a template and a simple JSON data structure is injected
+         to provide the data for the tag cloud
+    -->
+  <head>
+    <script type="text/javascript" src="http://www.google.com/jsapi">
+    </script>
+
+    <script type="text/javascript" 
+        src="http://word-cumulus-goog-vis.googlecode.com/svn/trunk/wordcumulus.js">
+    </script>
+
+    <script type="text/javascript" 
+            src="http://word-cumulus-goog-vis.googlecode.com/svn/trunk/swfobject.js">
+    </script>
+
+    <script type="text/javascript">
+      google.load("visualization", "1");
+
+      // Set callback to run when API is loaded
+      google.setOnLoadCallback(drawVisualization);
+
+
+    // Called when the Visualization API is loaded.
+    function drawVisualization() {
+
+        // Create and populate a data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Tag');
+        data.addColumn('string', 'URL');
+        data.addColumn('number', 'Font size');
+
+        //Define an array of 3-part tuples below
+        //We're substituting them in via Python so there's a placeholder
+var json_data = [ [ "照片", "http://www.douban.com/online/tag/%E7%85%A7%E7%89%87", "5" ],
+[ "生活", "http://www.douban.com/online/tag/%E7%94%9F%E6%B4%BB", "3.3356993736952" ],
+[ "摄影", "http://www.douban.com/online/tag/%E6%91%84%E5%BD%B1", "2.76033402922756" ],
+[ "电影", "http://www.douban.com/online/tag/%E7%94%B5%E5%BD%B1", "2.31273486430063" ],
+[ "图片", "http://www.douban.com/online/tag/%E5%9B%BE%E7%89%87", "2.18413361169102" ],
+[ "爱情", "http://www.douban.com/online/tag/%E7%88%B1%E6%83%85", "2.14154488517745" ],
+[ "音乐", "http://www.douban.com/online/tag/%E9%9F%B3%E4%B9%90", "2.07724425887265" ],
+[ "祝福", "http://www.douban.com/online/tag/%E7%A5%9D%E7%A6%8F", "1.97202505219207" ],
+[ "回忆", "http://www.douban.com/online/tag/%E5%9B%9E%E5%BF%86", "1.82922755741127" ],
+[ "截图", "http://www.douban.com/online/tag/%E6%88%AA%E5%9B%BE", "1.82254697286013" ],
+[ "测试", "http://www.douban.com/online/tag/%E6%B5%8B%E8%AF%95", "1.82087682672234" ],
+[ "旅行", "http://www.douban.com/online/tag/%E6%97%85%E8%A1%8C", "1.60542797494781" ],
+[ "分享", "http://www.douban.com/online/tag/%E5%88%86%E4%BA%AB", "1.6705636743215" ],
+[ "娱乐", "http://www.douban.com/online/tag/%E5%A8%B1%E4%B9%90", "1.54613778705637" ],
+[ "生日", "http://www.douban.com/online/tag/%E7%94%9F%E6%97%A5", "1.57202505219207" ],
+[ "明信片", "http://www.douban.com/online/tag/%E6%98%8E%E4%BF%A1%E7%89%87", "1.55699373695198" ],
+[ "搞笑", "http://www.douban.com/online/tag/%E6%90%9E%E7%AC%91", "1.51440501043841" ],
+[ "创意", "http://www.douban.com/online/tag/%E5%88%9B%E6%84%8F", "1.50187891440501" ],
+[ "青春", "http://www.douban.com/online/tag/%E9%9D%92%E6%98%A5", "1.38580375782881" ],
+[ "晒", "http://www.douban.com/online/tag/%E6%99%92", "1.24968684759916" ],
+[ "情感", "http://www.douban.com/online/tag/%E6%83%85%E6%84%9F", "1.24718162839248" ],
+[ "爱", "http://www.douban.com/online/tag/%E7%88%B1", "1.22379958246347" ],
+[ "美食", "http://www.douban.com/online/tag/%E7%BE%8E%E9%A3%9F", "1.20960334029228" ],
+[ "自拍", "http://www.douban.com/online/tag/%E8%87%AA%E6%8B%8D", "1.20793319415449" ],
+[ "游戏", "http://www.douban.com/online/tag/%E6%B8%B8%E6%88%8F", "1.20375782881002" ],
+[ "读书", "http://www.douban.com/online/tag/%E8%AF%BB%E4%B9%A6", "1.16283924843424" ],
+[ "公益", "http://www.douban.com/online/tag/%E5%85%AC%E7%9B%8A", "1.17787056367432" ],
+[ "心情", "http://www.douban.com/online/tag/%E5%BF%83%E6%83%85", "1.13444676409186" ],
+[ "明星", "http://www.douban.com/online/tag/%E6%98%8E%E6%98%9F", "1.1294363256785" ],
+[ "豆瓣", "http://www.douban.com/online/tag/%E8%B1%86%E7%93%A3", "1.10688935281837" ],
+[ "梦想", "http://www.douban.com/online/tag/%E6%A2%A6%E6%83%B3", "1.10104384133612" ],
+[ "设计", "http://www.douban.com/online/tag/%E8%AE%BE%E8%AE%A1", "1.09603340292276" ],
+[ "怀旧", "http://www.douban.com/online/tag/%E6%80%80%E6%97%A7", "1.09853862212944" ],
+[ "恶搞", "http://www.douban.com/online/tag/%E6%81%B6%E6%90%9E", "1.09519832985386" ],
+[ "动漫", "http://www.douban.com/online/tag/%E5%8A%A8%E6%BC%AB", "1.0901878914405" ],
+[ "故事", "http://www.douban.com/online/tag/%E6%95%85%E4%BA%8B", "1.08267223382046" ],
+[ "闲置", "http://www.douban.com/online/tag/%E9%97%B2%E7%BD%AE", "1.07181628392484" ],
+[ "记忆", "http://www.douban.com/online/tag/%E8%AE%B0%E5%BF%86", "1.07515657620042" ],
+[ "QQ", "http://www.douban.com/online/tag/QQ", "1.08016701461378" ],
+[ "拍照", "http://www.douban.com/online/tag/%E6%8B%8D%E7%85%A7", "1.07014613778706" ],
+[ "旅游", "http://www.douban.com/online/tag/%E6%97%85%E6%B8%B8", "1.05260960334029" ],
+[ "感动", "http://www.douban.com/online/tag/%E6%84%9F%E5%8A%A8", "1.05511482254697" ],
+[ "美女", "http://www.douban.com/online/tag/%E7%BE%8E%E5%A5%B3", "1.05678496868476" ],
+[ "童年", "http://www.douban.com/online/tag/%E7%AB%A5%E5%B9%B4", "1.05010438413361" ],
+[ "时尚", "http://www.douban.com/online/tag/%E6%97%B6%E5%B0%9A", "1.0517745302714" ],
+[ "礼物", "http://www.douban.com/online/tag/%E7%A4%BC%E7%89%A9", "1.04342379958246" ],
+[ "温暖", "http://www.douban.com/online/tag/%E6%B8%A9%E6%9A%96", "1.04592901878914" ],
+[ "交友", "http://www.douban.com/online/tag/%E4%BA%A4%E5%8F%8B", "1.03089770354906" ],
+[ "淘宝", "http://www.douban.com/online/tag/%E6%B7%98%E5%AE%9D", "1.00835073068894" ],
+[ "文艺", "http://www.douban.com/online/tag/%E6%96%87%E8%89%BA", "1" ] ] ;
+
+        data.addRows(json_data.length);
+        for (var i = 0; i < json_data.length; i++) {
+            data.setCell(i, 0, json_data[i][0]); // Tag
+            data.setCell(i, 1, json_data[i][1]); // URL for tag
+            data.setCell(i, 2, 2+2.5*json_data[i][2]); // Font size for tag
+        }
+
+        // Instantiate our table object.
+        var vis = new gviz_word_cumulus.WordCumulus(document.getElementById('tc'));
+
+        // Draw our table with the data we created locally.
+        vis.draw(data, {text_color: '#00ff00', speed: 50, width:600, height:600});
+       }
+   </script>
+  </head>
+  <body>
+    <div id="tc"></div>
+  </body>
+</html>
