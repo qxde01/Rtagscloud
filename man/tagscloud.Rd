@@ -27,8 +27,8 @@ tagscloud(tag,url=NULL,freq,fontSize=c(1,5),filename="tagscloud",
   a html file with tags cloud.
 }
 \references{
-https://github.com/ptwobrussell/Mining-the-Social-Web
-http://wordpress.org/plugins/wp-cumulus/
+\link{https://github.com/ptwobrussell/Mining-the-Social-Web}
+\link{http://wordpress.org/plugins/wp-cumulus}
 }
 \author{
 qxde01<\email{qxde01@gmail.com}>

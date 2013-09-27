@@ -5,7 +5,7 @@
 douban Online activities' tags
 }
 \description{
-douban Online activities' tags(2013-09-26),you can browse at http://www.douban.com/online/tag/.
+douban Online activities' tags(2013-09-26),you can browse at \link{http://www.douban.com/online/tag}.
 }
 \usage{data(doubanOnlineTags)}
 \format{
@@ -18,7 +18,7 @@ douban Online activities' tags(2013-09-26),you can browse at http://www.douban.c
 }
 \details{
 you can Crawl the data by package Rdouban:
-\code{Rdouban:get_online_tag(results=2000,count=200)}
+\code{Rdouban:get_online_tags(results=2000,count=200)}
 }
 
 \examples{

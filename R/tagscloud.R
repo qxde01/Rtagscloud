@@ -28,11 +28,3 @@ tagscloud<-function(tag,url=NULL,freq,fontSize=c(1,5),filename="tagscloud",
   browseURL(paste0("file://",getwd(),"/",filename))
   cat("\n The tagscloud html file is:",paste0(getwd(),"/",filename),"\n")  
 }
-#tagscloud(tag=doubanOnlineTags[1:100,1],
-#          url=doubanOnlineTags[1:100,2],
-#          freq=doubanOnlineTags[1:100,3],
-#          color='#FF0099FF',width=700)
-
-#save(doubanOnlineTags,file='doubanOnlineTags.rda')
-
-#rainbow(10)
